@@ -1,6 +1,6 @@
 import express from 'express'
-import path from 'path'
 import bodyParser from 'body-parser'
+import path from 'path'
 import history from 'connect-history-api-fallback'
 
 const port = process.env.PORT || 5000
@@ -22,13 +22,11 @@ if (process.env.NODE_ENV === 'development') {
     publicPath: webpackConfig.output.publicPath,              
     noInfo: true                                              
   }))                                                         
-  app.use(webpackHotMiddleware(compiler))
-}  
+  app.use(webpackHotMiddleware(compiler)) 
+}
 
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../index.html'))
 })
 
 app.listen(port, () => console.log('Server listen on port =', port, 'ENV =', process.env.NODE_ENV))
-
-
