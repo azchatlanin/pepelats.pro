@@ -8,6 +8,7 @@ const app = express()
 
 app.use(history())
 app.use(bodyParser.json())
+app.use('/dist', express.static('dist'))
 
 import webpack from 'webpack'                               
 import webpackMiddleware from 'webpack-dev-middleware'      
