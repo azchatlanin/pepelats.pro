@@ -1,4 +1,12 @@
 {
-  "presets": ["es2015", "stage-0"],
-  "comments": false
+  "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ]
+    ]
 }
