@@ -35,7 +35,7 @@ module.exports = {
         test: /\.(png|jpg|gif|svg)$/,
         loader: 'file-loader',
         options: {
-          name: '[name].[ext]?[hash]'
+          name: 'img/[name].[ext]?[hash]'
         }
       }
     ]
@@ -72,13 +72,6 @@ module.exports.plugins = (module.exports.plugins || []).concat([
       drop_console: true,
       unsafe      : true
     }
-  }),
-  new CompressionPlugin({
-    asset: "[path].gz[query]",
-    algorithm: "gzip",
-    test: /\.(js|css|html|svg)$/,
-    threshold: 10240,
-    minRatio: 0.8
   }),
   new webpack.LoaderOptionsPlugin({
     minimize: true
