@@ -74,6 +74,9 @@ module.exports = {
       test: /\.(js|css|html|svg|png)$/,
       threshold: 10240,
       minRatio: 0.8
+    }),
+    new webpack.LoaderOptionsPlugin({
+      minimize: true
     })
   ]
 }
