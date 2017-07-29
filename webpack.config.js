@@ -61,9 +61,6 @@ module.exports.plugins = (module.exports.plugins || []).concat([
     }
   }),
   new webpack.optimize.UglifyJsPlugin({
-    sourceMap: true,
-    beautify: false,
-    comments: false,
     compress: {
       warnings    : false,
     }
