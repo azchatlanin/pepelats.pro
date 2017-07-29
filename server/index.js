@@ -3,7 +3,6 @@ import bodyParser from 'body-parser'
 import path from 'path'
 import devOptions from './controllers/config/devOptions'
 
-const debug = Debug('server:app')
 const port = process.env.PORT || 5000
 const app = express()
 
