@@ -59,6 +59,20 @@ module.exports.plugins = (module.exports.plugins || []).concat([
       NODE_ENV: '"production"'
     }
   }),
+  new webpack.optimize.UglifyJsPlugin({
+    sourceMap: true,
+    beautify: false,
+    comments: false,
+    compress: {
+      sequences     : true,
+      booleans      : true,
+      loops         : true,
+      unused      : true,
+      warnings    : false,
+      drop_console: true,
+      unsafe      : true
+    }
+  }),
   new CompressionPlugin({
     asset: "[path].gz[query]",
     algorithm: "gzip",
