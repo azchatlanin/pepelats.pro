@@ -60,7 +60,7 @@ module.exports.plugins = (module.exports.plugins || []).concat([
       NODE_ENV: '"production"'
     }
   }),
-   new webpack.optimize.UglifyJsPlugin({
+  new webpack.optimize.UglifyJsPlugin({
     compress: {
       sequences     : true,
       booleans      : true,
