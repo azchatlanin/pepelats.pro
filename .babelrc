@@ -1,5 +1,5 @@
  {
-  "presets": [
+  "presets": ["stage-0",
     [
       "env",
       {
@@ -8,5 +8,6 @@
         }
       }
     ]
-  ]
+  ],
+  "comments": false
 } 
