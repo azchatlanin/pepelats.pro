@@ -5,6 +5,5 @@
     }]
   ]*/
 
-  "presets": ["env"],
-  "comments": false
+  "presets": ["env"]
 }
