@@ -24,7 +24,10 @@
     "stylus": "^0.54.5",
     "vue": "^2.4.2",
     "vue-router": "^2.7.0",
-    "vue-template-compiler": "^2.4.2"
+    "vue-template-compiler": "^2.4.2",
+    "webpack": "^3.3.0",
+    "webpack-dev-middleware": "^1.11.0",
+    "webpack-hot-middleware": "^2.18.2"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
@@ -33,13 +36,19 @@
     "babel-preset-env": "^1.6.0",
     "css-loader": "^0.28.4",
     "eslint": "^4.3.0",
+    "eslint-config-airbnb-base": "^11.3.1",
+    "eslint-plugin-import": "^2.7.0",
     "file-loader": "^0.11.2",
     "nodemon": "^1.11.0",
     "stylus-loader": "^3.0.1",
     "vue-loader": "^12.2.2",
-    "vue-template-compiler": "^2.4.2",
-    "webpack": "^3.3.0",
-    "webpack-dev-middleware": "^1.11.0",
-    "webpack-hot-middleware": "^2.18.2"
+    "vue-template-compiler": "^2.4.2"
+  },
+  "eslintConfig": {
+    "extends": "airbnb-base",
+    "env": {
+      "node": true
+    },
+    "root": true
   }
 }
