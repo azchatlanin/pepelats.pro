@@ -60,7 +60,7 @@ module.exports.plugins = (module.exports.plugins || []).concat([
       NODE_ENV: '"production"'
     }
   }),
-/*   new webpack.optimize.UglifyJsPlugin({
+   new webpack.optimize.UglifyJsPlugin({
     compress: {
       sequences     : true,
       booleans      : true,
@@ -70,7 +70,7 @@ module.exports.plugins = (module.exports.plugins || []).concat([
       drop_console: true,
       unsafe      : true
     }
-  }), */
+  }), 
   new CompressionPlugin({
     asset: "[path].gz[query]",
     algorithm: "gzip",
