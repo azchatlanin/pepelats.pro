@@ -6,10 +6,8 @@ import js from '../pages/js.vue'
 import linux from '../pages/linux.vue'
 import pageNotFound from '../pages/404.vue'
 
-const redirectPath = '/'
-
 export const routes = [
-  { path: '/',      component: index },
+  { path: '/', component: index },
   { path: '/vuejs', component: vuejs },
   { path: '/auth', component: auth },
   { path: '/cpp', component: cpp },
