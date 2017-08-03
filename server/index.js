@@ -3,7 +3,7 @@ import bodyParser from 'body-parser'
 import path from 'path'
 import morgan from 'morgan'
 import Debug from 'debug'
-import devOptions from './controllers/config/devOptions'
+import devOptions from './controllers/config/dev.serv.opt'
 
 import auth from './routes/auth'
 

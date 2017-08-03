@@ -3,7 +3,7 @@ var webpack = require('webpack')
 var CompressionPlugin = require("compression-webpack-plugin")
 
 module.exports = {
-  entry: [    
+  entry: [
     path.join(__dirname, '/src/app.js')
   ],
   output: {
@@ -49,7 +49,7 @@ module.exports = {
   performance: {
     hints: false
   },
-  devtool: '#eval-source-map'  
+  devtool: '#eval-source-map'
 }
 
 module.exports.devtool = '#source-map'
@@ -62,15 +62,16 @@ module.exports.plugins = (module.exports.plugins || []).concat([
   }),
   new webpack.optimize.UglifyJsPlugin({
     compress: {
-      sequences     : true,
-      booleans      : true,
-      loops         : true,
-      unused      : true,
-      warnings    : false,
+      sequences: true,
+      booleans: true,
+      loops: true,
+      unused: true,
+      warnings: false,
       drop_console: true,
-      unsafe      : true
+      unsafe: true
     }
-  }), 
+  }),
+
   new CompressionPlugin({
     asset: "[path].gz[query]",
     algorithm: "gzip",
