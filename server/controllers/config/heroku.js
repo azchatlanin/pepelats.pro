@@ -1,5 +1,4 @@
 import url from 'url'
-import herokuDev from './heroku.dev'
 
 const heroku = {}
 
@@ -14,6 +13,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 if (process.env.NODE_ENV === 'development') {
+  const herokuDev = require('./heroku.dev')
   heroku.user = herokuDev.user
   heroku.password = herokuDev.password
   heroku.host = herokuDev.host
