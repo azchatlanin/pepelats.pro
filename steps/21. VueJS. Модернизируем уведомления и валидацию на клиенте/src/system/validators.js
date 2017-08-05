@@ -2,20 +2,20 @@ import Validator from 'validator'
 import isEmpty from 'lodash/isEmpty'
 
 export default (model, key = '') => {
-  const errors = {}
+  let errors = ''
 
   if (!Validator.isEmail(model.email)) {
-    errors.status = 1
+    errors = 'Не верный формат почты'
   }
   if (isEmpty(model.password)) {
-    errors.status = 2
+    errors = 'Поле пароль не заполнено'
   }
   if (key === 'reg') {
     if (isEmpty(model.repassword)) {
-      errors.status = 3
+      errors = 'Поле re-password не заполнено'
     }
     if (model.password !== model.repassword) {
-      errors.status = 4
+      errors = 'Пароли не совпадают'
     }
   }
 

@@ -89,27 +89,8 @@ export default {
         let group = 'auth-notification'
         let type = 'error'
         let title = 'Ошибка ввода данных'
-        let text = ''
-        switch (valid(this.model, key).errors.status) {
-          case 1:
-            text = 'Не верный формат почты'
-            this.$notify({ group,title, text, type });
-            break;
-          case 2:
-            text = 'Поле пароль не заполнено'
-            this.$notify({ group,title, text, type });
-            break;
-          case 3:
-            text = 'Поле re-password не заполнено'
-            this.$notify({ group,title, text, type });
-            break;
-          case 4:
-            text = 'Пароли не совпадают'
-            this.$notify({ group,title, text, type });
-            break;        
-          default:
-            break;
-        }      
+        let text = valid(this.model, key).errors
+        this.$notify({ group,title, text, type });     
       }      
     }
   }  
