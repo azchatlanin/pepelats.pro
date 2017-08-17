@@ -1,5 +1,5 @@
 import url from 'url'
-// import herokuDev from './heroku.dev'
+import herokuDev from './heroku.dev'
 
 const heroku = {}
 
@@ -13,12 +13,12 @@ if (process.env.NODE_ENV === 'production') {
   heroku.database = params.pathname.split('/')[1]
 }
 
-/* if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === 'development') {
   heroku.user = herokuDev.user
   heroku.password = herokuDev.password
   heroku.host = herokuDev.host
   heroku.port = herokuDev.port
   heroku.database = herokuDev.database
-} */
+}
 
 export default heroku

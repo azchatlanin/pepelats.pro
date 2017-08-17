@@ -24,14 +24,13 @@ const app = express()
 app.use(bodyParser.json())
 app.use(morgan('dev'))
 app.use(history())
-app.use(serveStatic(path.join(__dirname, '..', 'dist')))
-
 app.use(session({
   secret: 'secret',
   saveUninitialized: true,
   resave: true,
   store: store
 }))
+app.use(serveStatic(path.join(__dirname, '..', 'dist')))
 
 devOptions(app)
 
