@@ -31,7 +31,7 @@ module.exports = merge(baseConfig, {
       threshold: 10240,
       minRatio: 0.8
     }),
-    /* new HtmlWebpackPlugin({
+    new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html',
       inject: true,
@@ -40,7 +40,7 @@ module.exports = merge(baseConfig, {
         collapseWhitespace: true,
         removeAttributeQuotes: true
       }
-    }), */
+    }),
     new OptimizeCSSPlugin({
       cssProcessorOptions: {
         safe: true

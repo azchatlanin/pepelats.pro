@@ -9,6 +9,7 @@ import db from './controllers/config/knex'
 import devOptions from './controllers/config/dev.serv.opt'
 import history from 'connect-history-api-fallback'
 var config = require('../build/config')
+var proxyMiddleware = require('http-proxy-middleware')
 
 import auth from './routes/auth'
 
@@ -25,8 +26,16 @@ app.use(bodyParser.json())
 app.use(morgan('dev'))
 app.use(history())
 
-var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
-app.use(staticPath, express.static('./static'))
+var proxyTable = {}
+Object.keys(proxyTable).forEach(function (context) {
+  var options = proxyTable[context]
+  if (typeof options === 'string') {
+    options = { target: options }
+  }
+  app.use(proxyMiddleware(options.filter || context, options))
+})
+
+app.use('/', express.static('./static'))
 
 app.use(session({
   secret: 'secret',
@@ -40,8 +49,8 @@ devOptions(app)
 // ROUTES
 app.use('/api/auth', auth)
 
-app.get('/*', (req, res) => {
+/* app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../index.html'))
-})
+}) */
 
 app.listen(port, () => debug('Server listen on port =', port, 'ENV =', process.env.NODE_ENV))
