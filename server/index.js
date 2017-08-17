@@ -8,8 +8,7 @@ import KnexSessionStore from 'connect-session-knex'
 import db from './controllers/config/knex'
 import devOptions from './controllers/config/dev.serv.opt'
 import history from 'connect-history-api-fallback'
-var config = require('../build/config')
-var proxyMiddleware = require('http-proxy-middleware')
+var serveStatic = require('serve-static');
 
 import auth from './routes/auth'
 
@@ -26,10 +25,6 @@ app.use(bodyParser.json())
 app.use(morgan('dev'))
 app.use(history())
 
-app.use(proxyMiddleware({ target: 'http://www.pepelats.pro/', changeOrigin: true }))
-
-app.use('/', express.static('./static'))
-
 app.use(session({
   secret: 'secret',
   saveUninitialized: true,
@@ -42,8 +37,6 @@ devOptions(app)
 // ROUTES
 app.use('/api/auth', auth)
 
-/* app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../index.html'))
-}) */
+app.use(serveStatic(__dirname))
 
 app.listen(port, () => debug('Server listen on port =', port, 'ENV =', process.env.NODE_ENV))
