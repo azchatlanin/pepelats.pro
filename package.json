@@ -59,7 +59,6 @@
     "nodemon": "^1.11.0",
     "optimize-css-assets-webpack-plugin": "^2.0.0",
     "ora": "^1.2.0",
-    "serve-static": "^1.12.4",
     "stylus-loader": "^3.0.1",
     "url-loader": "^0.5.8",
     "vue-loader": "^12.1.0",

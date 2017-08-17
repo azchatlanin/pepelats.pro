@@ -8,6 +8,7 @@ import KnexSessionStore from 'connect-session-knex'
 import db from './controllers/config/knex'
 import devOptions from './controllers/config/dev.serv.opt'
 import history from 'connect-history-api-fallback'
+import serveStatic from'serve-static'
 // routes
 import auth from './routes/auth'
 
@@ -23,6 +24,7 @@ const app = express()
 app.use(bodyParser.json())
 app.use(morgan('dev'))
 app.use(history())
+app.use(serveStatic(path.join(__dirname, '..', 'dist')))
 
 app.use(session({
   secret: 'secret',
@@ -36,8 +38,8 @@ devOptions(app)
 // ROUTES
 app.use('/api/auth', auth)
 
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../index.html'))
-})
+/* app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../dist/index.html'))
+}) */
 
 app.listen(port, () => debug('Server listen on port =', port, 'ENV =', process.env.NODE_ENV))
