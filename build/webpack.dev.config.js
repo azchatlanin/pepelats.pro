@@ -1,36 +1,30 @@
-import path from 'path'
-import webpack from 'webpack'
-import utils from './utils'
-import merge from 'webpack-merge'
-import baseConfig from './webpack.base.config'
-import FriendlyErrorsPlugin from 'friendly-errors-webpack-plugin'
-import HtmlWebpackPlugin from 'html-webpack-plugin'
+var utils = require('./utils')
+var webpack = require('webpack')
+var config = require('../config')
+var merge = require('webpack-merge')
+var baseWebpackConfig = require('./webpack.base.config')
+var HtmlWebpackPlugin = require('html-webpack-plugin')
+var FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 
-module.exports = merge(baseConfig, {
-  devServer: {
-    historyApiFallback: true,
-    stats: 'errors-only',
-    host: process.env.HOST,
-    port: process.env.PORT,
-    watchOptions: {
-      aggregateTimeout: 1000,
-      poll: 1000
-    }
+module.exports = merge(baseWebpackConfig, {
+  module: {
+    rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap })
   },
+  // cheap-module-eval-source-map is faster for development
+  devtool: '#cheap-module-eval-source-map',
   plugins: [
-    new webpack.WatchIgnorePlugin([
-      path.join(__dirname, 'node_modules')
-    ]),
+    new webpack.DefinePlugin({
+      'process.env': config.dev.env
+    }),
+    // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
+    // https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html',
       inject: true
     }),
     new FriendlyErrorsPlugin()
-  ],
-  module: {
-    rules: utils.styleLoaders({ sourceMap: false })
-  }
+  ]
 })
