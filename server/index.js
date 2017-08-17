@@ -8,7 +8,7 @@ import KnexSessionStore from 'connect-session-knex'
 import db from './controllers/config/knex'
 import devOptions from './controllers/config/dev.serv.opt'
 import history from 'connect-history-api-fallback'
-var serveStatic = require('serve-static');
+var serveStatic = require('serve-static')
 
 import auth from './routes/auth'
 
@@ -37,6 +37,6 @@ devOptions(app)
 // ROUTES
 app.use('/api/auth', auth)
 
-app.use(serveStatic(__dirname))
+app.use(serveStatic(path.join(__dirname, 'dist')))
 
 app.listen(port, () => debug('Server listen on port =', port, 'ENV =', process.env.NODE_ENV))
