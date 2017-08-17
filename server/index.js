@@ -26,15 +26,7 @@ app.use(bodyParser.json())
 app.use(morgan('dev'))
 app.use(history())
 
-var proxyTable = {}
-Object.keys(proxyTable).forEach(function (context) {
-  var options = proxyTable[context]
-  console.log('options = ', options)
-  if (typeof options === 'string') {
-    options = { target: options }
-  }
-  app.use(proxyMiddleware(options.filter || context, options))
-})
+app.use(proxyMiddleware({ target: 'http://www.pepelats.pro/', changeOrigin: true }))
 
 app.use('/', express.static('./static'))
 
