@@ -8,9 +8,7 @@ import KnexSessionStore from 'connect-session-knex'
 import db from './controllers/config/knex'
 import devOptions from './controllers/config/dev.serv.opt'
 import history from 'connect-history-api-fallback'
-
-var serveStatic = require('serve-static')
-
+// routes
 import auth from './routes/auth'
 
 const SessionStore = KnexSessionStore(session)
@@ -25,8 +23,6 @@ const app = express()
 app.use(bodyParser.json())
 app.use(morgan('dev'))
 app.use(history())
-
-app.use(serveStatic(path.join(__dirname, 'dist')))
 
 app.use(session({
   secret: 'secret',
