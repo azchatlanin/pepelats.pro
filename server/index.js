@@ -41,7 +41,7 @@ devOptions(app)
 app.use('/api/auth', auth)
 
 app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../dist/index.html'))
+  res.sendFile(path.join(__dirname, '../index.html'))
 })
 
 app.listen(port, () => debug('Server listen on port =', port, 'ENV =', process.env.NODE_ENV))
