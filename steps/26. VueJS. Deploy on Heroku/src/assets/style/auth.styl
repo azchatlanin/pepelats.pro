@@ -1,0 +1,102 @@
+@import 'system'
+
+*, :after, :before 
+  box-sizing border-box
+
+.login-wrap 
+  width 100%
+  margin auto
+  max-width 400px
+  min-height 520px
+  position relative
+  top 200px 	
+  box-shadow 0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19)
+  padding 50px 50px 50px 50px
+  background #EAEAEA
+
+  .component-fade-enter-active, .component-fade-leave-active 
+    transition opacity .3s ease
+  
+  .component-fade-enter, .component-fade-leave-to
+    opacity 0     
+
+  .sign-in , .sign-up
+    display none
+
+  .sign-in:checked + .tab,
+  .sign-up:checked + .tab
+    border-color primary_color
+
+  .tab
+    font-size 18px
+    margin-right 15px
+    padding-bottom 5px
+    margin 10px 10px 20px 0px
+    display inline-block
+    border-bottom 2px solid transparent  
+    text-transform uppercase
+    cursor pointer
+
+  .sign-in-form, .sign-up-form
+    top 120px
+    left 50px
+    right 50px
+    position absolute
+
+    .input-group
+      margin-bottom 15px  
+
+      .label
+        text-transform uppercase
+        width 100%
+        color #6D6D6D
+        display block
+        font-size 12px
+
+      .input
+        width 100%
+        color default_color
+        display block
+        border 1px solid #CECECE
+        padding 15px 20px
+        background #EAEAEA
+
+      .input[data-type="password"]
+        text-security circle
+      
+      .input:focus
+        outline none
+        border 1px solid primary_color
+
+    button
+      text-transform uppercase
+      border none
+      padding 15px 20px      
+      width 100%
+      color #fff
+      display block
+      background primary_color
+      outline none
+      cursor pointer
+    button:active
+      opacity 0.7
+
+      
+    .hr
+      height 2px
+      margin 10px 0 10px 0
+      background default_color
+
+    .footer-link
+      text-align center   
+
+      a 
+        color inherit 
+        text-decoration none
+      a:hover
+        color primary_color
+      
+      label
+        cursor pointer          
+      label:hover
+        color primary_color
