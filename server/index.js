@@ -7,7 +7,6 @@ import session from 'express-session'
 import KnexSessionStore from 'connect-session-knex'
 import db from './controllers/config/knex'
 import devOptions from './controllers/config/dev.serv.opt'
-var config = require('../config')
 
 import auth from './routes/auth'
 
@@ -22,8 +21,9 @@ const app = express()
 
 app.use(bodyParser.json())
 app.use(morgan('dev'))
-var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
-app.use(staticPath, express.static('./static'))
+
+app.use('/dist', express.static('dist'))
+
 app.use(session({
   secret: 'secret',
   saveUninitialized: true,

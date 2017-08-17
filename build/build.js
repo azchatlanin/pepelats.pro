@@ -1,14 +1,14 @@
-import ora from 'ora'
-import chalk from 'chalk'
-import webpack from 'webpack'
-import prodConfig from './webpack.prod.config'
-
 process.env.NODE_ENV = 'production'
+
+var ora = require('ora')
+var chalk = require('chalk')
+var webpack = require('webpack')
+var prodConfig = require('./webpack.prod.config')
 
 const spinner = ora('building for production...')
 spinner.start()
 
-webpack(prodConfig, (err, stats) => {
+webpack(prodConfig, function (err, stats) {
   spinner.stop()
   if (err) throw err
 
