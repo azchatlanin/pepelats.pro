@@ -21,7 +21,7 @@ const app = express()
 
 app.use(bodyParser.json())
 app.use(morgan('dev'))
-app.use('/dist', express.static('dist'))
+
 app.use(session({
   secret: 'secret',
   saveUninitialized: true,
