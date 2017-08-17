@@ -3,12 +3,12 @@ const path = require('path')
 const merge = require('webpack-merge')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const baseConfig = require('./webpack.base.config')
-const CompressionPlugin = require("compression-webpack-plugin")
+const CompressionPlugin = require('compression-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 
-module.exports = merge(baseConfig , {
+module.exports = merge(baseConfig, {
   module: {
     rules: utils.styleLoaders({
       sourceMap: true,
@@ -25,8 +25,8 @@ module.exports = merge(baseConfig , {
       filename: 'static/css/style.css'
     }),
     new CompressionPlugin({
-      asset: "[path].gz[query]",
-      algorithm: "gzip",
+      asset: '[path].gz[query]',
+      algorithm: 'gzip',
       test: /\.(js|css|html|svg)$/,
       threshold: 10240,
       minRatio: 0.8
@@ -38,7 +38,7 @@ module.exports = merge(baseConfig , {
       minify: {
         removeComments: true,
         collapseWhitespace: true,
-        removeAttributeQuotes: true 
+        removeAttributeQuotes: true
       }
     }),
     new OptimizeCSSPlugin({
