@@ -29,6 +29,7 @@ app.use(history())
 var proxyTable = {}
 Object.keys(proxyTable).forEach(function (context) {
   var options = proxyTable[context]
+  console.log('options = ', options)
   if (typeof options === 'string') {
     options = { target: options }
   }
