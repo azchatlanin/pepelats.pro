@@ -9,7 +9,7 @@ auth.post('/', (req, res) => {
   const { email, password } = req.body
   debug(email, password)
 
-  if (!AuthValid('email', password).isValid) {
+  if (!AuthValid(email, password).isValid) {
     res.status(401).json(AuthValid('email', password).errors)
     return
   }
