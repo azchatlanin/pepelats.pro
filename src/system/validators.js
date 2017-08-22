@@ -7,8 +7,8 @@ export default (model, key = '') => {
   if (!Validator.isEmail(model.email)) {
     errors.email = 'Не верный формат почты'
   }
-  if (!Validator.isLength(model.password, { min: 6, max: undefined })) {
-    errors.passwordLength = 'Длина пароля не менее 6 символов'
+  if (!Validator.isLength(model.password, { min: 6, max: 50 })) {
+    errors.passwordLength = 'Длина пароля не менее 6 символов и не более 50'
   }
   if (isEmpty(model.password)) {
     errors.passwordEmpty = 'Поле пароль не заполнено'

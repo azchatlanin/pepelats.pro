@@ -9,7 +9,7 @@ import db from './controllers/config/knex'
 import devOptions from './controllers/config/dev.serv.opt'
 import history from 'connect-history-api-fallback'
 import serveStatic from 'serve-static'
-// routes
+// ROUTES
 import auth from './routes/auth'
 
 const SessionStore = KnexSessionStore(session)
@@ -30,11 +30,11 @@ app.use(session({
   resave: true,
   store: store
 }))
-app.use(serveStatic(path.join(__dirname, '..', 'dist')))
 
 devOptions(app)
 
 // ROUTES
 app.use('/api/auth', auth)
 
+app.use(serveStatic(path.join(__dirname, '..', 'dist')))
 app.listen(port, () => debug('Server listen on port =', port, 'ENV =', process.env.NODE_ENV))
