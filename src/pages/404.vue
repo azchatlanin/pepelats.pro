@@ -2,7 +2,7 @@
     <div class="pageNotFound">
     <img src="../assets/img/logo_black.png">
     <div class="output">
-      <h3>404 - тра раза</h3>
+      <h3>404 - три раза</h3>
       <div class="Ku">
         <a @click="showKu()">Ку</a>
       </div>

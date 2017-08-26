@@ -1,11 +1,11 @@
 import Validator from 'validator'
 import isEmpty from 'lodash/isEmpty'
 
-const AuthValid = (email, password) => {
+export default (email, password) => {
   const errors = {}
 
   if (!Validator.isEmail(email)) {
-    errors.email = 'Не верный формат почты'
+    errors.email = 'Неверный формат почты'
   }
   if (!Validator.isLength(password, { min: 6, max: 50 })) {
     errors.passwordLength = 'Длина пароля не менее 6 символов и не более 50'
@@ -19,5 +19,3 @@ const AuthValid = (email, password) => {
     isValid: isEmpty(errors)
   }
 }
-
-export { AuthValid }
