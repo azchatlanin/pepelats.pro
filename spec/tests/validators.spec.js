@@ -1,5 +1,5 @@
 import validClient from '../../src/system/validators'
-import { AuthValid } from '../../server/modules/validators'
+import valid from '../../server/modules/validators'
 
 const key = 'reg'
 
@@ -76,12 +76,12 @@ describe('Проверка модуля validators на клиенте:', () => 
 
   it('Пустое поле почты', () => {
     expect(validClient(modelClient[2]).isValid).toBe(false)
-    expect(validClient(modelClient[2]).errors).toEqual({ email: 'Не верный формат почты' })
+    expect(validClient(modelClient[2]).errors).toEqual({ email: 'Неверный формат почты' })
   })
 
   it('Не верный формат почты', () => {
     expect(validClient(modelClient[3]).isValid).toBe(false)
-    expect(validClient(modelClient[3]).errors).toEqual({ email: 'Не верный формат почты' })
+    expect(validClient(modelClient[3]).errors).toEqual({ email: 'Неверный формат почты' })
   })
 
   it('Длина пароля не менее 6 символов', () => {
@@ -97,27 +97,27 @@ describe('Проверка модуля validators на клиенте:', () => 
 
 describe('Проверка модуля validators на сервере:', () => {
   it('Все поля верно заполнены', () => {
-    expect(AuthValid(modelServer[0].email, modelServer[0].password).isValid).toBe(true)
-    expect(AuthValid(modelServer[0].email, modelServer[0].password).errors).toEqual({})
+    expect(valid.Auth(modelServer[0].email, modelServer[0].password).isValid).toBe(true)
+    expect(valid.Auth(modelServer[0].email, modelServer[0].password).errors).toEqual({})
   })
   it('Не заполнено поле пароль', () => {
-    expect(AuthValid(modelServer[1].email, modelServer[1].password).isValid).toBe(false)
-    expect(AuthValid(modelServer[1].email, modelServer[1].password).errors).toEqual({ passwordLength: 'Длина пароля не менее 6 символов и не более 50', passwordEmpty: 'Поле пароль не заполнено' })
+    expect(valid.Auth(modelServer[1].email, modelServer[1].password).isValid).toBe(false)
+    expect(valid.Auth(modelServer[1].email, modelServer[1].password).errors).toEqual({ passwordLength: 'Длина пароля не менее 6 символов и не более 50', passwordEmpty: 'Поле пароль не заполнено' })
   })
 
   it('Пустое поле почты', () => {
-    expect(AuthValid(modelServer[2].email, modelServer[2].password).isValid).toBe(false)
-    expect(AuthValid(modelServer[2].email, modelServer[2].password).errors).toEqual({ email: 'Не верный формат почты' })
+    expect(valid.Auth(modelServer[2].email, modelServer[2].password).isValid).toBe(false)
+    expect(valid.Auth(modelServer[2].email, modelServer[2].password).errors).toEqual({ email: 'Неверный формат почты' })
   })
 
   it('Не верный формат почты', () => {
-    expect(AuthValid(modelServer[3].email, modelServer[3].password).isValid).toBe(false)
-    expect(AuthValid(modelServer[3].email, modelServer[3].password).errors).toEqual({ email: 'Не верный формат почты' })
+    expect(valid.Auth(modelServer[3].email, modelServer[3].password).isValid).toBe(false)
+    expect(valid.Auth(modelServer[3].email, modelServer[3].password).errors).toEqual({ email: 'Неверный формат почты' })
   })
 
   it('Длина пароля не менее 6 символов', () => {
-    expect(AuthValid(modelServer[4].email, modelServer[4].password).isValid).toBe(false)
-    expect(AuthValid(modelServer[4].email, modelServer[4].password).errors).toEqual({ passwordLength: 'Длина пароля не менее 6 символов и не более 50' })
+    expect(valid.Auth(modelServer[4].email, modelServer[4].password).isValid).toBe(false)
+    expect(valid.Auth(modelServer[4].email, modelServer[4].password).errors).toEqual({ passwordLength: 'Длина пароля не менее 6 символов и не более 50' })
   })
 })
 

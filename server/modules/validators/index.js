@@ -1,6 +1,5 @@
-import auth from './auth'
+import Auth from './auth'
 
-const validator = {}
-validator.auth = auth
-
-export default validator
+export default {
+  Auth
+}
