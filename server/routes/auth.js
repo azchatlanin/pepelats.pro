@@ -26,7 +26,7 @@ auth.post('/', (req, res) => {
       debug(err)
     }
     if (!isEmpty(result.User.Errors)) {
-      return res.status(500).json(result.User.Errors)
+      return res.status(result.User.code).json(result.User.Errors)
     }
     req.session.userID = result.User.userID
     res.status(200).json(result.User)
