@@ -23,7 +23,7 @@ auth.post('/', (req, res) => {
     }
   }, (err, result) => {
     if (err) {
-      debug(err)
+      return debug(err)
     }
     if (!isEmpty(result.User.Errors)) {
       return res.status(result.User.code).json(result.User.Errors)
