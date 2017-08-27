@@ -16,3 +16,4 @@ coverage
 build/Release
 node_modules/
 .npm
+package-lock.json
