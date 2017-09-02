@@ -1,38 +1,33 @@
-import moxios from 'moxios'
-import axios from 'axios'
-import sinon from 'sinon'
+import chai from 'chai'
+import chaiHttp from 'chai-http'
+import server from '../../server'
 
-describe('mocking axios requests', function () {
-  let onFulfilled
-  let onRejected
-  describe('across entire suite', function () {
-    beforeEach(function () {
-      moxios.install()
-      onFulfilled = sinon.spy()
-      onRejected = sinon.spy()
-    })
+const should = chai.should()
+chai.use(chaiHttp)
 
-    afterEach(function () {
-      moxios.uninstall()
-      onFulfilled = ''
-      onRejected = ''
-    })
+describe('Проверка модуля:', () => {
+  /* beforeEach(function (done) {
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000
+    setTimeout(function () {
+      console.log('test stop beforeEach')
+      done()
+    }, 2000)
+  }) */
 
-    it('stub response for any matching request URL', function (done) {
-      axios.post('/api/test', 'data').then(onFulfilled).catch(onRejected).then((result) => console.log('result = ', result))
-      moxios.wait(function () {
-        const request = moxios.requests.mostRecent()
-        request.respondWith({
-          status: 200,
-          response: {
-            'test': 'OK'
-          }
-        }).then(() => {
-          console.log('JSON.parse(request.config.data) = ', JSON.parse(request.config.data))
-          expect(JSON.parse(request.config.data)).to.deep.equal()
-          done()
-        })
-      })
+  it('post', (done) => {
+    chai.request(server).post('/api/auth').send({ email: 'book@qwe.qwe', password: 'asdqweqwe' }).end((err, res) => {
+      if (err) return
+      console.log('res.body = ', res.body)
+      res.should.have.status(201)
+      res.body.should.be.a('object')
+      res.body.should.have.property('Errors')
+      res.body.should.have.property('reputation').equal('0')
+      res.body.should.have.property('userID')
+      res.body.should.have.property('userName').equal('Непонятный')
+      res.body.userName.should.be.a('string')
+      res.body.reputation.should.be.a('string')
+      res.body.userID.should.be.a('number')
+      done()
     })
   })
 })

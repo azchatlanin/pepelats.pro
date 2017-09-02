@@ -29,7 +29,7 @@ auth.post('/', (req, res) => {
       return res.status(result.User.code).json(result.User.Errors)
     }
     req.session.userID = result.User.userID
-    res.status(200).json(result.User)
+    res.status(201).json(result.User)
   })
 })
 

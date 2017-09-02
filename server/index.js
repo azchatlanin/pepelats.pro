@@ -11,7 +11,6 @@ import history from 'connect-history-api-fallback'
 import serveStatic from 'serve-static'
 // routes
 import auth from './routes/auth'
-import test from './routes/test'
 
 const SessionStore = KnexSessionStore(session)
 const store = new SessionStore({
@@ -37,6 +36,7 @@ devOptions(app)
 
 // ROUTES
 app.use('/api/auth', auth)
-app.use('/api/test', test)
 
 app.listen(port, () => debug('Server listen on port =', port, 'ENV =', process.env.NODE_ENV))
+
+export default app // для тестирования
