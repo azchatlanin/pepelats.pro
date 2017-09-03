@@ -1,7 +1,6 @@
 import express from 'express'
 import Debug from 'debug'
 import async from 'async'
-import isEmpty from 'lodash/isEmpty'
 import validator from '../modules/validators'
 import user from '../modules/user'
 
@@ -25,11 +24,8 @@ auth.post('/', (req, res) => {
     if (err) {
       return debug(err)
     }
-    if (!isEmpty(result.User.Error)) {
-      return res.status(result.User.Error.code).json(result.User.Error.message)
-    }
     req.session.userID = result.User.userID
-    return res.status(201).json(result.User)
+    return res.status(result.User.statusCode).json(result.User)
   })
 })
 

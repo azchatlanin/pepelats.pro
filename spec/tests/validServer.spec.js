@@ -1,5 +1,5 @@
 import valid from '../../server/modules/validators'
-import model from '../data/authServer'
+import model from '../data/auth.valid.Server'
 
 describe('Проверка модуля validators на сервере:', () => {
   it('Все поля верно заполнены', () => {

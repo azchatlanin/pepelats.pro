@@ -7,13 +7,14 @@ const debug = Debug('server: module: >> user:auth')
 
 export default (email, password, callback) => {
   const User = {
-    Error: {}
+    statusCode: 200,
+    userID: null
   }
 
-  db.select('reputation', 'userID', 'passwordDigest', 'userNameQWE').from('users').where({ email: email }).asCallback((err, values) => {
+  db.select('reputation', 'userID', 'passwordDigest', 'userName').from('users').where({ email: email }).asCallback((err, values) => {
     if (err) {
-      User.Error.message = 'Ошибка на стороне сервера'
-      User.Error.code = 500
+      User.message = 'Ошибка на стороне сервера'
+      User.statusCode = 500
       debug(err)
       return callback(null, User)
     }
@@ -22,26 +23,25 @@ export default (email, password, callback) => {
         User.reputation = values[0].reputation
         User.userID = values[0].userID
         User.userName = values[0].userName
-        return callback(null, User)
       } else {
-        User.Error.message = 'Пароли не совпадают!'
-        User.Error.code = 403
-        return callback(null, User)
+        User.message = 'Пароли не совпадают!'
+        User.statusCode = 403
       }
     } else {
       const passwordDigest = bcrypt.hashSync(password, 10)
       db('users').insert({ passwordDigest: passwordDigest, email: email }).returning('userID').asCallback((err, values) => {
         if (err) {
-          User.Error.message = 'Ошибка на стороне сервера'
-          User.Error.code = 500
+          User.message = 'Ошибка на стороне сервера'
+          User.statusCode = 500
           debug(err)
           return callback(null, User)
+        } else {
+          User.reputation = 0
+          User.userID = values[0]
+          User.userName = 'Непонятный'
         }
-        User.reputation = 0
-        User.userID = values[0]
-        User.userName = 'Непонятный'
-        return callback(null, User)
       })
     }
+    return callback(null, User)
   })
 }
