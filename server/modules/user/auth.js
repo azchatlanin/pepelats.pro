@@ -7,7 +7,7 @@ const debug = Debug('server: module: >> user:auth')
 
 export default (email, password, callback) => {
   const User = {
-    statusCode: 200,
+    statusCode: 201,
     userID: null
   }
 
@@ -34,7 +34,6 @@ export default (email, password, callback) => {
           User.message = 'Ошибка на стороне сервера'
           User.statusCode = 500
           debug(err)
-          return callback(null, User)
         } else {
           User.reputation = 0
           User.userID = values[0]

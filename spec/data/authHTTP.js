@@ -1,7 +1,7 @@
 export default [
   {
     req: { email: 'book@qwe.qwe', password: 'asdqweqwe' },
-    res: { statusCode: 200, userID: 18, reputation: '0', userName: 'Непонятный' }
+    res: { statusCode: 201, userID: 18, reputation: '0', userName: 'Непонятный' }
   },
   {
     req: { email: 'bookqwe.qwe', password: 'asdqweqwe' },
