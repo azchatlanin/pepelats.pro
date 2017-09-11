@@ -1,8 +1,7 @@
 import express from 'express'
 import Debug from 'debug'
-import async from 'async'
 import validator from '../modules/validators'
-import user from '../modules/user'
+import User from '../modules/user'
 
 const auth = express.Router()
 const debug = Debug('server: route: >> auth')
@@ -16,16 +15,9 @@ auth.post('/', (req, res) => {
     return res.status(403).json(valid.errors)
   }
 
-  async.series({
-    User: (callback) => {
-      user.Auth(email, password, callback)
-    }
-  }, (err, result) => {
-    if (err) {
-      return debug(err)
-    }
-    req.session.userID = result.User.userID
-    return res.status(result.User.statusCode).json(result.User)
+  const user = new User()
+  user.Auth(email, password).then((result, reject) => {
+    return res.status(result.statusCode).json(result)
   })
 })
 
